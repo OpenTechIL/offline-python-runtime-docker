@@ -1,9 +1,7 @@
 # Offline Python Dockers Runtime
-for offline air gapped enviorment 
 
-## For Open Source Community
+This project provides a runtime environment for Python applications designed for offline, air-gapped environments.
 
-We welcome contributions from the open-source community to enhance Offline Python Dockers.
 
 ### Getting Started
 
@@ -11,7 +9,7 @@ To get started with OfflinePythonDockers, clone the repository and follow these 
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/offline-python-runtime-docker.git
+    git clone https://github.com/opentechil/offline-python-runtime-docker.git
     cd offline-python-runtime-docker
     ```
 2.  **Build Docker images:**
@@ -22,7 +20,7 @@ To get started with OfflinePythonDockers, clone the repository and follow these 
     TL;DR:
     ```bash
         podman run -v ./your-python-dir:/home/appuser/your-python-dir:Z \
-        -it localhost:offline-python-runtime-docker:dev \
+        -it localhost/offline-python-runtime-docker:dev \
         python ./your-python-dir/file.py
     ```
 
@@ -45,7 +43,7 @@ To get started with OfflinePythonDockers, clone the repository and follow these 
 
 ### Contributing
 
-We encourage contributions! Please read our `CONTRIBUTING.md` (to be created) for guidelines on:
+We encourage contributions! Please read our [`CONTRIBUTORS.md`](./CONTRIBUTORS.md) for guidelines on:
 *   Reporting bugs
 *   Suggesting enhancements
 *   Submitting pull requests
