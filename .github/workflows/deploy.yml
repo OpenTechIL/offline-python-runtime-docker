@@ -3,7 +3,7 @@ name: Build and Push Multi-Folder to GHCR
 on:
   push:
     branches:
-      - main
+      - release
 
 jobs:
   build-and-push:
