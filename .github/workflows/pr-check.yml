@@ -1,0 +1,21 @@
+name: Pre-Merge Build Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test Build (No Push)
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image:  ${{ github.event.repository.name }}:latest-auto-testing
+          context: .
+          containerfiles: ./Dockerfile
