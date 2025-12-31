@@ -16,6 +16,9 @@ jobs:
       - name: Test Build (No Push)
         uses: redhat-actions/buildah-build@v2
         with:
-          image:  ${{ github.event.repository.name }}:latest-auto-testing
+          image: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest-auto-test
+
           context: .
-          containerfiles: ./Dockerfile
+          containerfiles: ./Dockerfile          
