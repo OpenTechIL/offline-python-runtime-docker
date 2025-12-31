@@ -3,7 +3,7 @@ name: Pre-Merge Build Check
 on:
   pull_request:
     branches:
-      - main
+      - release
 
 jobs:
   validate-build:
