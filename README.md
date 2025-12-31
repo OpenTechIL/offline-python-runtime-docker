@@ -2,6 +2,47 @@
 
 This project provides a runtime environment for Python applications designed for offline, air-gapped environments.
 
+Note: I prefer using `podman` instead `docker`, so whenever i write `podman` you can use it also with `docker`
+
+## Quick start
+
+### use local
+```bash
+    #simulate python file
+    echo "print('test')" > test.py
+    
+    # mounte python with -v and run command -it
+    podman run \
+        -v ./test.py:/test.py:Z \
+        -it ghcr.io/opentechil/offline-python-runtime-docker:latest \
+        python ./test.py    
+
+    # more allegant way to mount to /home/appuser/test.py
+
+    # clean
+    rm test.py
+    
+```
+### prepare for offline
+
+```bash
+# get the docker
+podman pull ghcr.io/opentechil/offline-python-runtime-docker:latest
+
+# create offline image
+podman save -o offline-python-runtime-docker.tar ghcr.io/opentechil/offline-python-runtime-docker:latest
+
+# copy to offline some how
+
+# load image
+podman load -i offline-python-runtime-docker.tar
+
+# use
+podman run \
+        -v ./test.py:/test.py:Z \
+        -it ghcr.io/opentechil/offline-python-runtime-docker:latest \
+        python ./test.py 
+```
 
 ## Getting Started
 
