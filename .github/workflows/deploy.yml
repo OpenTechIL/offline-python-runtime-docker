@@ -9,8 +9,8 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      contents: write # Required to create the Git Tag
+      packages: write # Required to push to GHCR
 
     steps:
       - name: Checkout code
