@@ -10,6 +10,9 @@ This file lists the individuals who have contributed to the OpenTech (R.A.) dock
 
 ## Develop / fix
 use git flow method
+0. create `feature` branch or `bugfix` (see git flow)
+1. Do some changes
+2. commit and push
 
 ### Git Flow
 
@@ -19,8 +22,9 @@ This project utilizes `git-flow` for its branching model, which helps organize d
 *   **`feature` Branches:** Use `git flow feature start <feature-name>` for new features. These branches should be based off `develop` and merged back into `develop`.
 *   **`release` Branch:** This branch contains the official release history. Use `git flow release start <version>` when preparing a new release. These branches are based off `develop` and are merged into `release` (for official releases) and `develop` (to ensure feature parity).
 *   **`hotfix` Branches:** Use `git flow hotfix start <hotfix-name>` for urgent bug fixes on `release`. These branches are based off `release` and merged into both `release` and `develop`.
+*   **`bugfix` Branches:** Use `git flow bugfix start <bugfix-name>` for new bugfixes. These branches should be based off `develop` and merged back into `develop`.
 
-## How to push image
+## How to push image (for authorized)
 
 after developing you sould build
 ```bash
