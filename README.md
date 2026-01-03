@@ -1,123 +1,91 @@
-# Offline Python Dockers Runtime
+# Offline Python Runtime Docker
 
-This project provides a runtime environment for Python applications designed for offline, air-gapped environments.
+[![Build Status](https://github.com/opentechil/offline-python-runtime-docker/workflows/Build%20and%20Push%20Multi-Folder%20to%20GHCR/badge.svg)](https://github.com/opentechil/offline-python-runtime-docker/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Docker Image Version](https://img.shields.io/badge/docker-v1.0.0-blue.svg)](https://github.com/opentechil/offline-python-runtime-docker/pkgs/container/offline-python-runtime-docker)
+[![Python Version](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
 
-Note: I prefer using `podman` instead `docker`, so whenever i write `podman` you can use it also with `docker`
+A comprehensive, containerized Python runtime environment designed specifically for **enterprise offline and air-gapped deployments**. Pre-configured with data science, database connectivity, and enterprise libraries.
 
-## Quick start
+## 🚀 Quick Start
 
-### use local
+### Prerequisites
+- Docker 20.10+ or Podman 3.0+
+- 2GB+ free disk space
+
 ```bash
-    #simulate python file
-    echo "print('test')" > test.py
-    
-    # mounte python with -v and run command -it
-    podman run \
-        -v ./test.py:/test.py:Z \
-        -it ghcr.io/opentechil/offline-python-runtime-docker:latest \
-        python ./test.py    
+# Build and run immediately
+git clone https://github.com/opentechil/offline-python-runtime-docker.git
+cd offline-python-runtime-docker
+podman build . -t offline-python-runtime:latest
 
-    # more allegant way to mount to /home/appuser/test.py
-
-    # clean
-    rm test.py
-    
+# Verify installation
+podman run -it offline-python-runtime:latest python -c "import oracledb, pandas; print('✅ Enterprise Python runtime ready!')"
 ```
-### prepare for offline
+
+## 🏢 Key Features
+
+- **🔒 Air-Gapped Ready**: Complete offline deployment with no external dependencies
+- **🗄️ Oracle Database**: Full Instant Client 19.29 with thick mode support  
+- **📊 Data Science Stack**: pandas, numpy, scikit-learn, matplotlib pre-installed
+- **🛡️ Security Hardened**: Non-root user, SELinux compatible, minimal attack surface
+- **📦 Enterprise Ready**: Multi-database support, ETL tools, compliance features
+
+## 📚 Documentation
+
+| 📖 What you need      | 📄 Where to find it                                                        |
+| --------------------- | -------------------------------------------------------------------------- |
+| **Getting Started**       | [📖 docs/user/getting-started.md](docs/user/getting-started.md)             |
+| **Usage Examples**        | [📖 docs/user/usage-examples.md](docs/user/usage-examples.md)               |
+| **Enterprise Deployment** | [📖 docs/user/enterprise-deployment.md](docs/user/enterprise-deployment.md) |
+| **Configuration**         | [📖 docs/user/configuration.md](docs/user/configuration.md)                 |
+| **Troubleshooting**       | [📖 docs/user/troubleshooting.md](docs/user/troubleshooting.md)             |
+| **Development Setup**     | [📖 docs/developer/setup.md](docs/developer/setup.md)                       |
+| **Architecture**          | [📖 docs/developer/architecture.md](docs/developer/architecture.md)         |
+
+## 💻 Quick Examples
+
+### Data Science Workflow
+```bash
+# Run data analysis with volume mounting
+mkdir -p ./my-analysis && echo 'import pandas as pd; print(f"Pandas {pd.__version__} ready!")' > ./my-analysis/test.py
+
+podman run -v ./my-analysis:/home/appuser/my-analysis:Z \
+           -it offline-python-runtime:latest \
+           python ./my-analysis/test.py
+```
+
+### Oracle Database Connection
+```bash
+# Test Oracle client (no credentials required for test)
+podman run -it offline-python-runtime:latest \
+           python /home/appuser/py-apps/tests/test_thick_oracle.py
+```
+
+## 📦 Enterprise Deployment
 
 ```bash
-# get the docker
+# Export for air-gapped deployment
 podman pull ghcr.io/opentechil/offline-python-runtime-docker:latest
-
-# create offline image
 podman save -o offline-python-runtime-docker.tar ghcr.io/opentechil/offline-python-runtime-docker:latest
 
-# copy to offline some how
-
-# load image
+# Deploy in offline environment
 podman load -i offline-python-runtime-docker.tar
-
-# use
-podman run \
-        -v ./test.py:/test.py:Z \
-        -it ghcr.io/opentechil/offline-python-runtime-docker:latest \
-        python ./test.py 
+podman run -v ./app:/home/appuser/app:Z offline-python-runtime-docker:latest
 ```
 
-## Getting Started
+## 🤝 Contributing
 
-To get started with OfflinePythonDockers, clone the repository and follow these steps:
+We welcome contributions! See [📖 docs/developer/contributing.md](docs/developer/contributing.md) for detailed guidelines.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/opentechil/offline-python-runtime-docker.git
-    cd offline-python-runtime-docker
-    ```
-2.  **Build Docker images:**
-    ```bash
-    podman build . -t offline-python-runtime-docker:dev-latest-local
-    
-3. **Run python**
-    TL;DR:
-    ```bash
-        podman run -v ./your-python-dir:/home/appuser/your-python-dir:Z \
-        -it localhost/offline-python-runtime-docker:dev \
-        python ./your-python-dir/file.py
-    ```
+## 📄 License
 
-    Full example:
-    ```bash
-    # Create folder to share with docker
-    mkdir -p ./your-python-dir
+MIT License - see [LICENSE](LICENSE) file for details.
 
-    # Write a code
-    echo 'print ("Hello world!")' > ./your-python-dir/file.py
-    
-    # Run it
-    podman run \
-        -v ./your-python-dir:/home/appuser/your-python-dir:Z \
-        -it localhost/offline-python-runtime-docker:dev \
-        python ./your-python-dir/file.py
+---
 
-    #output> Hello world!
-    ```
+**🚀 Ready for enterprise deployment?** 
 
-## How To
-### Add python package for offline
-1. just edit the `requirements.txt` file and add packages
-2. build docker `podman build . -t offline-python-runtime-docker:dev-latest-local`
-3. run it
+📖 **Check our [complete documentation](docs/README.md)** for detailed guides, examples, and enterprise integration patterns.
 
-### Export to offline use
-- Just use `podman save -o my-offline-py.tar offline-python-runtime-docker:dev-latest-local`
-- copy the tar
-- then `podman load -i my-offline-py.tar`
-
-## Troubleshooting
-
-### Space on linux 
-some times becuse limit `/tmp` folder 
-
-    copying layers and metadata for container "": initializing source
-     containers-storage:working-container: storing layer "" to file: on copy: 
-     writing to tar filter pipe (closed=false,err=reading tar archive: 
-     copying content for "home/appuser/.local/lib/python3.13/site-packages/package/somefile.py":
-     write /var/tmp/buildah35812317/layer: no space left on device):
-     write /var/tmp/buildah35812317/layer: no space left on device
-
-Solution:
-```bash
-    mkdir -p ~/podman-tmp
-    export TMPDIR=~/podman-tmp
-```
-
-## Contributing
-
-We encourage contributions! Please read our [`CONTRIBUTORS.md`](./CONTRIBUTORS.md) for guidelines on:
-*   Reporting bugs
-*   Suggesting enhancements
-*   Submitting pull requests
-*   Code style and conventions
-
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+**⭐ Star this repository** if you find it useful for your enterprise Python deployments!
