@@ -5,3 +5,5 @@ requests
 urllib3
 python-dotenv
 ipykernel
+nbconvert
+papermill
