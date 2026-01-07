@@ -22,3 +22,5 @@ mssql-python
 pyreadstat
 tabulate 
 ipykernel
+nbconvert
+papermill
