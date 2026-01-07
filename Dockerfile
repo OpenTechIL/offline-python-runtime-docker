@@ -20,8 +20,7 @@ ENV ORACLE_INSTANTCLIENT_PATH=/opt/oracle/instantclient_19_29
 
 ##
 ## Pyhon libs and Wheelhouse
-## 
-
+##
 WORKDIR /tmp/build
 
 COPY requirements-global.txt .
