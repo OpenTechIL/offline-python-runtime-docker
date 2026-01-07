@@ -1,9 +1,11 @@
 # Offline Python Runtime Docker
 
 [![Build Status](https://github.com/opentechil/offline-python-runtime-docker/workflows/Build%20and%20Push%20Multi-Folder%20to%20GHCR/badge.svg)](https://github.com/opentechil/offline-python-runtime-docker/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Docker Image Version](https://img.shields.io/badge/docker-v1.0.0-blue.svg)](https://github.com/opentechil/offline-python-runtime-docker/pkgs/container/offline-python-runtime-docker)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Podman](https://img.shields.io/badge/podman-supported-green.svg)](https://podman.io/)
+[![GHCR](https://img.shields.io/badge/ghcr-latest-blue)](https://github.com/OpenTechIL/offline-python-runtime-docker/pkgs/container/offline-python-runtime-docker)
 [![Python Version](https://img.shields.io/badge/python-3.13-blue.svg)](https://www.python.org/downloads/)
+[![GitHub stars](https://img.shields.io/github/stars/OpenTechIL/offline-python-runtime-docker?style=social)](https://github.com/OpenTechIL/offline-python-runtime-docker/stargazers)
 
 A comprehensive, containerized Python runtime environment designed specifically for **enterprise offline and air-gapped deployments**. Features an innovative **wheelhouse architecture** for optimized package management and reliable offline operations.
 
