@@ -1,0 +1,7 @@
+pydebug
+cryptography
+pytest
+requests
+urllib3
+python-dotenv
+ipykernel
